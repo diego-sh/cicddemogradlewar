@@ -22,6 +22,12 @@ public class HomeController {
         return ResponseEntity.ok(this.metodoComplejo(numero));
     }
 
+    @GetMapping("/numeroParImpar2")
+    public ResponseEntity esnumeroPar(@RequestParam int numero) {
+
+        return ResponseEntity.ok(this.metodoComplejo2(numero));
+    }
+
     private String metodoComplejo( int numero) {
        
             if (numero % 2 == 0) {
