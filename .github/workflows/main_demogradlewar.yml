@@ -32,6 +32,19 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      #Scan code with sonarqube
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=demogradlewar
+            -Dsonar.test.exclusions=tests/**
+            -Dsonar.exclusions=**/*.java
+            -Dsonar.verbose=true
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
